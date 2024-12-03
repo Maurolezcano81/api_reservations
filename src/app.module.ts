@@ -6,6 +6,9 @@ import { TypeReservationModule } from './admin/type_reservation/type_reservation
 import { ConfigModule, ConfigService } from '@nestjs/config'; // Importa ConfigModule y ConfigService
 import { UsersModule } from './users/users.module';
 import { RoleModule } from './admin/role/role.module';
+import { EntityModule } from './entity/entity.module';
+import { AuthModule } from './auth/auth.module';
+import { BranchModule } from './sale_of_point/branch/branch.module';
 
 @Module({
   imports: [
@@ -26,6 +29,12 @@ import { RoleModule } from './admin/role/role.module';
     UsersModule,
     
     RoleModule,
+    
+    EntityModule,
+    
+    AuthModule,
+    
+    BranchModule,
   ],
 
   controllers: [AppController],

@@ -14,6 +14,7 @@ export class RoleService {
   ) {
   }
 
+
   create(createRoleDto: CreateRoleDto) {
 
     const initRepository = this.roleRepository.create(createRoleDto)
@@ -39,6 +40,14 @@ export class RoleService {
     const data = await this.roleRepository.findBy({ id_role: id })
 
     return data
+  }
+
+  async findByName(name: string): Promise<Role | undefined> {
+
+    const data = await this.roleRepository.findOne({
+      where: { name_role: name }
+    })
+    return data;
   }
 
   update(id: number, updateRoleDto: UpdateRoleDto) {
