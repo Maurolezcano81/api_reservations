@@ -1,5 +1,6 @@
+import { ReservationClient } from "src/reservations/reservation-client/entities/reservation-client.entity";
 import { User } from "src/users/entities/user.entity";
-import { Column, JoinColumn, Entity, OneToOne, PrimaryGeneratedColumn, JoinTable } from "typeorm";
+import { Column, JoinColumn, Entity, OneToOne, PrimaryGeneratedColumn, JoinTable, OneToMany } from "typeorm";
 
 @Entity()
 export class People {
@@ -23,5 +24,8 @@ export class People {
     )
     @JoinColumn()
     user_fk: User
+
+    @OneToMany(() => ReservationClient, (ReservationClient) => ReservationClient.client_fk)
+    client_fk: ReservationClient[]
 
 }

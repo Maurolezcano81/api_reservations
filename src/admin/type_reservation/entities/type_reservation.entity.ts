@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
+import { ReservationClient } from 'src/reservations/reservation-client/entities/reservation-client.entity';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany, OneToOne } from 'typeorm';
 
 
 @Entity()
@@ -17,4 +18,7 @@ export class TypeReservation {
 
     @CreateDateColumn({ type: "timestamp" })
     updated_at: Date;
+
+    @OneToMany(() => ReservationClient, (ReservationClient) => ReservationClient.tr_fk)
+    tr_fk: ReservationClient[]
 }

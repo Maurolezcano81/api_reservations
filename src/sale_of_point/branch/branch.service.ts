@@ -15,26 +15,38 @@ export class BranchService {
 
   create(createBranchDto: CreateBranchDto) {
 
-    const instance = this.branchRepository.create(createBranchDto)
+    const instance = this.branchRepository.create({
+      ...createBranchDto,
+      supervisor: { id_user: createBranchDto.supervisor }
+    })
 
-    const create = this.branchRepository.save(createBranchDto);
+    const create = this.branchRepository.save(instance);
 
     return create
   }
 
   async findAll() {
 
-    
-    
-    return `This action returns all branch`;
+    const [data] = await this.branchRepository.findAndCount();
+
+
+    return {
+      data: data[0]
+    }
   }
 
   findOne(id: number) {
     return `This action returns a #${id} branch`;
   }
 
-  update(id: number, updateBranchDto: UpdateBranchDto) {
-    return `This action updates a #${id} branch`;
+  async update(id: number, updateBranchDto: UpdateBranchDto) {
+
+    const updateInstance = await this.branchRepository.update({
+      id_branch: id
+    }, {
+      ...updateBranchDto,
+      supervisor: { id_user: updateBranchDto.supervisor }
+    })
   }
 
   remove(id: number) {

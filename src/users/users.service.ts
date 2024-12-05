@@ -16,6 +16,7 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    
   ) { }
 
 
@@ -49,7 +50,6 @@ export class UsersService {
       where: { [field]: value }
     });
   
-    // Verificar que data no es null o undefined
     if (data && typeof data === 'object' && Object.keys(data).length > 0) {
       return true;
     }

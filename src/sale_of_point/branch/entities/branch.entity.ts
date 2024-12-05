@@ -1,5 +1,7 @@
-import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "src/users/entities/user.entity";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity()
 export class Branch {
     @PrimaryGeneratedColumn()
     id_branch: number
@@ -25,6 +27,10 @@ export class Branch {
     @Column()
     tel_branch: string
 
-    @Column()
-    principal_color: string
+    @OneToOne(() => User, (User) => User.id_user,
+        { eager: true }
+    )
+    @JoinColumn()
+    supervisor: User
+
 }

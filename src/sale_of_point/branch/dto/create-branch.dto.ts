@@ -1,4 +1,4 @@
-import { IsEmail, IsHexColor, IsNotEmpty, IsOptional, IsPhoneNumber, IsString, IsUrl } from "class-validator";
+import { IsEmail, IsHexColor, IsNotEmpty, IsNumber, IsOptional, IsPhoneNumber, IsString, IsUrl } from "class-validator";
 
 export class CreateBranchDto {
 
@@ -36,7 +36,8 @@ export class CreateBranchDto {
     @IsPhoneNumber()
     tel_branch: string
 
-    @IsOptional()
-    @IsHexColor()
-    principal_color?: string
+
+    @IsNotEmpty()
+    @IsNumber()
+    supervisor: number
 }
